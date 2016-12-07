@@ -1,16 +1,20 @@
+Pré-requis : un serveur Apache installé, Dolibarr et Git
+
 
 1. Créez le module avec comme nom votre login selon la procédure déjà vue
-	- clonez également ou ouvrez sous github le projet https://github.com/Casir2016/dolibarr_module_simple
+	- clonez également ou ouvrez sous github le projet https://github.com/Casir2017/dolibarr_module_simple
 	
-2. Clonez le dans votre répertoire et remontez son contenu complet à la racine $mv monModule/* . & $mv monModule/.git . 
+2. [Sous windows non nécessaire] Clonez le dans votre répertoire et remontez son contenu complet à la racine $mv monModule/* . & $mv monModule/.git . 
 
-3. Copiez simple.php, class/simple.class.php, script/create-maj-base.php depuis le module simple
-	- copiez également la partie à copier (cf. TODO) du fichier core/module/modSimple.class.php et class/actions_simple.class.php
-	
-4. Mettre le numéro de votre groupe et mettre à jour les liens /simple/ par /votrelogin/ dans les fichiers adéquats
- - core/module/modVotremodule.class.php
+3. Mettre le numéro de votre groupe et mettre à jour les liens /simple/ par /votrelogin/ dans les fichiers adéquats
+ - core/module/modSimple.class.php
+ - core/trigger/interface_99_modsimple_simpletrigger.class.php
  - class/simple.class.php
+ - class/action_simple.class.php
  - script/create-maj-base.php
+ - simple.php
+ 
+ Le nom des fichiers doit aussi être changé et correspondre au déclaration de classe adéquate
  
 5. La gestion de base permet de charger un objet relatif à un contact et d'enregistrer un titre lié (method loadBy)
  - Ajoutez un champs note à votre classe et faites en sorte qu'il se sauvegarde
