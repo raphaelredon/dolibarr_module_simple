@@ -4,6 +4,9 @@
 	
 	dol_include_once('/contact/class/contact.class.php');
 	dol_include_once('/simple/class/simple.class.php');
+
+
+	$langs->load('simple@simple');
 	
 	$object = new Contact($db);
 	$object->fetch(GETPOST('fk_contact'));

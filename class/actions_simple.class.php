@@ -68,9 +68,15 @@ class Actionssimple
 
 		if (in_array('contactcard', explode(':', $parameters['context'])))
 		{
-		  
+		  global $db,$langs;
+
+		  $societe = new Societe($db);
+		  $societe->fetch($object->socid);
+
+
 		  echo '<tr>
-		  	<td>Hook 208000</td><td colspan="'.$parameters['colspan'].'">Affichez ici le code postal du tiers du contact</td>
+		  	<td>'.$langs->trans('Zip').'</td>
+			<td colspan="'.$parameters['colspan'].'">'.$societe->zip.'</td>
 		  </tr>';
 		}
 
