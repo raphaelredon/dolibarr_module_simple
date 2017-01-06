@@ -59,6 +59,24 @@ class Actionssimple
 	 * @param   HookManager     $hookmanager    Hook manager propagated to allow calling another hook
 	 * @return  int                             < 0 on error, 0 on success, 1 to replace standard code
 	 */
+	function moreLink($parameters, &$object, &$action, $hookmanager) {
+		 global $db,$langs;
+		
+		if (in_array('links', explode(':', $parameters['context'])) && empty($parameters['option']))
+                {
+                dol_include_once('/simple/class/grade.class.php');
+		$soc = new Societe($db);
+		$soc->fetch($object->id);
+//		$soc->fetch_optionals($soc->id);
+//var_dump($soc);
+                $this->resprints = $parameters['link']. ' ' . Grade::get($soc);
+		
+//var_dump($this->resPrint);
+		return 1;
+
+		}
+	}
+
 	function formObjectOptions($parameters, &$object, &$action, $hookmanager)
 	{
 //TODO méthode à copier
@@ -66,17 +84,15 @@ class Actionssimple
 		$error = 0; // Error counter
 		$myvalue = ''; // A result value
 
-		if (in_array('contactcard', explode(':', $parameters['context'])))
+		if (in_array('thirdpartycard', explode(':', $parameters['context'])))
 		{
 		  global $db,$langs;
-
-		  $societe = new Societe($db);
-		  $societe->fetch($object->socid);
-
+		
+		dol_include_once('/simple/class/grade.class.php');
 
 		  echo '<tr>
-		  	<td>'.$langs->trans('Zip').'</td>
-			<td colspan="'.$parameters['colspan'].'">'.$societe->zip.'</td>
+		  	<td>'.$langs->trans('Grade').'</td>
+			<td colspan="'.$parameters['colspan'].'">'.Grade::get($object).'</td>
 		  </tr>';
 		}
 
