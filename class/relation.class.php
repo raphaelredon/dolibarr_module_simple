@@ -1,6 +1,6 @@
 <?php
 
-class TRelation extends TObjetStd {
+class TRelation extends TObjetStd { // L'objet std gère les interactions avec la base de données, il suffit juste de définir la structure
 
 	function __construct() {
 		
