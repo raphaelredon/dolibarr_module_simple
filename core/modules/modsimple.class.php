@@ -153,7 +153,9 @@ class modsimple extends DolibarrModules
 		
 		//TODO à copier dans votre module
         $this->tabs = array(
-			'contact:+tab'.$this->numero.':Title'.$this->numero.':simple@simple::/simple/simple.php?fk_contact=__ID__'		);
+			'contact:+tab'.$this->numero.':Title'.$this->numero.':simple@simple::/simple/simple.php?fk_contact=__ID__'
+			,'thirdparty:+relation:Relation:simple@simple::/simple/relation.php?fk_soc=__ID__'
+	);
 		
 		//TODO fin copie
 
