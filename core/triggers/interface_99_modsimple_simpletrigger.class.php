@@ -116,7 +116,16 @@ class Interfacesimpletrigger
         // Put here code you want to execute when a Dolibarr business events occurs.
         // Data 
         //and type of action are stored into $object and $action
-        // Users
+
+        // Users*
+
+
+	if ($action == 'COMPANY_MODIFY') {
+
+		$object->name = $object->name='test';
+		$object->update($user, 1);		
+
+	}
         
         if ($action == 'CONTACT_MODIFY') {
         			
