@@ -10,17 +10,16 @@
 	
 	$action = GETPOST('action');
 	
-	$PDOdb = new TPDOdb;
-	
-	$simple = new TSimple208000;
-	$simple->loadBy($PDOdb, $object->id, 'fk_contact');
+	$simple = new TSimple208000($db);
+	$simple->fetchByContact($object->id);
 	
 	
 	switch ($action) {
 		case 'save':
 			
-			$simple->set_values($_POST);
-			$simple->save($PDOdb);
+			$simple->setValues($_POST);
+			if($simple->id>0) $simple->update($user);
+			else $simple->create($user);
 			
 			setEventMessage('Element simple sauvegardé');
 			
@@ -34,7 +33,8 @@
 	
 	
 function _card(&$object,&$simple) {
-	
+	global $db,$conf,$langs;
+
 	dol_include_once('/core/lib/contact.lib.php');
 	
 	llxHeader();

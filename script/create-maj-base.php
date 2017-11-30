@@ -10,11 +10,10 @@ if(!defined('INC_FROM_DOLIBARR')) {
 
 }
 
+global $db;
 
 dol_include_once('/simple/class/simple.class.php');
 
-$PDOdb=new TPDOdb;
-
 $o=new TSimple208000($db);
-$o->init_db_by_vars($PDOdb);
+$o->init_db_by_vars($db);
 

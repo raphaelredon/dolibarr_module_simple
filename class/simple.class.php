@@ -1,18 +1,34 @@
 <?php
 
-class TSimple208000 extends TObjetStd {
+class TSimple208000 extends SeedObject {
 
-	function __construct() {
+	function __construct(&$db) {
 		
-		parent::set_table(MAIN_DB_PREFIX.'simple208000');
+		$this->db = $db;
 
-		parent::add_champs('title',array('type'=>'string','index'=>true,'length'=>80));
-		parent::add_champs('fk_contact',array('type'=>'integer','index'=>true));
+		$this->table_element = 'simple208000';
 
-		parent::_init_vars();
+		$this->fields=array(
+			'rowid'=>array('type'=>'integer','index'=>true)
+			,'title'=>array('type'=>'string','index'=>true,'length'=>80)
+			,'fk_contact'=>array('type'=>'integer','index'=>true)
+			,'datec'=>array('type'=>'date')
+			,'tms'=>array('type'=>'date')
+			
+		);
 
-		parent::start();
+		$this->init();
+	}
 
+	function fetchByContact($fk_contact) {
+		
+		$res = $this->db->query("SELECT rowid FROM ".MAIN_DB_PREFIX.$this->table_element." 
+			WHERE fk_contact=".(int)$fk_contact);
+		if($obj = $this->db->fetch_object($res)) {
+			return $this->fetchCommon($obj->rowid);
+		}
+
+		return false;
 	}
 
 }
